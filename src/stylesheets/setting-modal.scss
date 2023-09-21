@@ -1,0 +1,48 @@
+.setting-modal {
+    z-index: 999999999999 !important;
+
+    .sm-content {
+        .option {
+            font-size: 20px;
+            margin: 20px 0 10px 0;
+        }
+
+        .option-content {
+            padding: 0 15px;
+
+            .desc {
+                display: flex;
+                align-items: center;
+                margin-top: 5px;
+                font-size: 14px;
+
+                .mins {
+                    width: 35px;
+
+                    input {
+                        padding: 0 6px!important;
+                        width: 100px;
+                        
+                    }
+                }
+            }
+
+            .btn-groups {
+                margin: 15px 0;
+
+                button {
+                    margin-right: 10px;
+                    width: 35px !important;
+                    height: 35px !important;
+                    border-radius: 100%;
+                    min-width: unset;
+                    padding-top: 7px;
+                }
+            }
+        }
+
+        .indent-more {
+            padding-left: 35px;
+        }
+    }
+}

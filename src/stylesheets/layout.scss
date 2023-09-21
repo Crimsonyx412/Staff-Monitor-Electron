@@ -1,0 +1,157 @@
+@import "variables.scss";
+
+aside.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sidebarWidth;
+    height: 100%;
+    z-index: 99999;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    background-color: white;
+
+    .logo-wrapper {
+        border-bottom: 0.5px solid #000000;
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width:$sidebarWidth ;
+            height: 63px;
+        }
+    }
+}
+
+
+.navbar {
+    margin: 20px 0 0 0;
+    padding: 0 4px;
+
+    .item {
+        list-style-type: none;
+        padding: 5px;
+        width: 100%;
+        text-align: center;
+        margin-top: 4px;
+
+        i {
+            font-size: 25px;
+            color: #C4C4C4;
+        }
+
+        &:hover,
+        &.active {
+            cursor: pointer;
+            background-color: $secondaryColor;
+            border-radius: 4px;
+
+            i {
+                color: white !important;
+            }
+        }
+    }
+}
+
+
+header {
+    padding: 16px 33px;
+    border-bottom: 0.5px solid #000000;
+
+    .player {
+        .dropdown-menu {
+            padding-top: 0px !important;
+            font-size: 15px;
+
+            .pauseFor {
+                background-color: #27C26C;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: .25rem 1rem;
+                color: white;
+            }
+        }
+
+        .play,
+        .stop {
+            width: 31px;
+            height: 31px;
+            border-radius: 100%;
+            border: none;
+            outline: none;
+        }
+
+        .stop {
+            background-color: $thirdColor;
+            color: white;
+            margin: 0 0 0 26px;
+
+            &.active {
+                background-color: $secondaryColor;
+            }
+        }
+
+        .play {
+            background-color: $primaryColor;
+            color: white;
+            opacity: 1;
+            transition: 0.3s;
+
+            &:hover {
+                opacity: 0.8;
+            }
+
+        }
+
+        .p-details {
+            position: relative;
+            margin-left: 55px;
+
+            .worktimer {
+                font-size: 17px;
+                font-weight: 600;
+                color: $primaryColor;
+
+                &.active {
+                    color: black;
+                }
+            }
+
+            .selectedProject {
+                position: absolute;
+                left: 0;
+                bottom: -17px;
+                width: 450px;
+                font-size: 12px;
+                color: $secondaryColor;
+                font-weight: bold;
+            }
+        }
+
+        .breaktimer {
+            font-size: 17px;
+            font-weight: 600;
+            color: $thirdColor;
+            border-left: 2px solid $secondaryColor;
+            padding-left: 18px;
+            margin-left: 20px;
+        }
+    }
+
+    .others {
+
+        .summary {
+            font-weight: 500;
+            font-size: 11px;
+            color: $thirdColor;
+            margin-right: 25px;
+        }
+
+        .chat {
+            outline: none;
+            border: none;
+            background-color: transparent;
+            color: $thirdColor;
+        }
+    }
+}

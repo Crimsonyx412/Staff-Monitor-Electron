@@ -1,0 +1,123 @@
+{
+  "name": "timeclock-upgraded",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron/main.js",
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.3.1",
+    "@iconify/react": "^4.1.1",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.10",
+    "@mui/x-date-pickers": "^6.14.0",
+    "@napi-rs/canvas": "^0.1.44",
+    "active-win": "^8.1.0",
+    "active-win-url": "^1.0.1",
+    "auto-launch": "^5.0.6",
+    "axios": "^1.5.0",
+    "bootstrap": "^5.3.2",
+    "dayjs": "^1.11.10",
+    "form-data": "^4.0.0",
+    "fs": "^0.0.1-security",
+    "jimp": "^0.22.10",
+    "jwt-decode": "^3.1.2",
+    "keytar": "^7.9.0",
+    "path": "^0.12.7",
+    "puppeteer": "^21.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.46.1",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.16.0",
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.67.0",
+    "sharp": "^0.32.6",
+    "sqlite3": "^5.1.6",
+    "uiohook-napi": "^1.5.2",
+    "uuid": "^9.0.1",
+    "yup": "^1.2.0"
+  },
+  "homepage": "./",
+  "scripts": {
+    "start": "set BROWSER=none && set PORT=5555 && react-scripts start",
+    "start-electron": "set DEBUG=electron-builder && set ELECTRON_START_URL=http://localhost:5555/. && set ELECTRON_ACTIVITY_URL=http://localhost:5555/ && electron .",
+    "build": "react-scripts build",
+    "build-electron": "mkdir build/src & robocopy electron build/electron /S & robocopy src/shared build/src/shared /S",
+    "package": "electron-builder build --win -c.extraMetadata.main=build/electron/main.js --publish never",
+    "package-macOS": "electron-builder build --mac -c.extraMetadata.main=build/electron/main.js --publish never",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dist": "yarn build && yarn build-electron && yarn package",
+    "rebuild": "electron-rebuild"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "build": {
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "public/assets/AppIcon.ico"
+    },
+    "nsis": {
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "runAfterFinish": true,
+      "oneClick": false,
+      "installerIcon": "public/assets/AppIcon.ico",
+      "uninstallerIcon": "public/assets/AppIcon.ico",
+      "installerHeaderIcon": "public/assets/AppIcon.ico",
+      "license": "License.txt",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "directories": {
+      "output": "dist"
+    },
+    "extends": null,
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      "public/assets/**/*"
+    ],
+    "extraMetadata": {
+      "main": "build/electron/electron.js"
+    },
+    "publish": {
+      "provider": "github",
+      "repo": "electron-cra-example",
+      "owner": "johndyer24"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.3.0",
+    "electron": "^20.3.8",
+    "electron-builder": "^22.8.0",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-is-dev": "^2.0.0",
+    "electron-react-devtools": "^0.5.3"
+  }
+}

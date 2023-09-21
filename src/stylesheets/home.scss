@@ -1,0 +1,142 @@
+@import "variables.scss";
+
+main {
+    .page-content {
+        background: #FFFFFF;
+        margin: 20px 23px;
+        border-radius: 11px;
+        padding: 13px 32px 13px 32px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+
+        .tb-content {
+            .no-data {
+                text-align: center;
+                font-size: 12px;
+            }
+
+            h5 {
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 18px;
+                color: #818181;
+                text-align: center;
+                margin-bottom: 15px;
+                margin-top: 10px;
+            }
+
+            .search {
+                position: relative;
+                display: inline-block;
+                left: 50%;
+                transform: translateX(-50%);
+
+                input {
+                    font-size: 11px;
+                    padding: 0.47rem 0.75rem !important;
+                    max-width: 240px;
+                    min-width: 240px;
+                }
+
+                i {
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #818181;
+                }
+            }
+
+            .actions {
+                display: flex;
+                justify-content: center;
+
+                .category {
+                    border: 0.5px solid #000000;
+                    border-radius: 4px;
+                    color: #818181;
+                    padding: 6px 21px;
+                    background-color: transparent;
+                    font-weight: 500;
+                    font-size: 13px;
+
+                    &.active {
+                        background: $secondaryColor;
+                        color: white;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+
+                    &:not(:last-child) {
+                        margin-right: 15px;
+                    }
+                }
+            }
+
+            .item-list {
+                background: #F9F9F9;
+                border-radius: 5px;
+                width: 100%;
+                padding: 5px;
+                max-height: 350px;
+                overflow: auto;
+
+                .item-wrapper {
+                    display: flex;
+                    position: relative;
+                    border: 1px solid transparent;
+
+                    .item {
+                        width: 100%;
+                        font-weight: 400;
+                        font-size: 12px;
+                        padding: 12px 11px;
+                        color: #818181;
+                        border: 1px solid transparent;
+                        cursor: pointer;
+                        text-decoration: unset;
+
+                        &:hover:not(.highlight) {
+                            text-decoration: underline;
+                        }
+
+                        &.highlight {
+                            border-color: $primaryColor;
+                        }
+                    }
+
+                    .search_button {
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        margin: 12px 10px 0 15px;
+                        color: $secondaryColor;
+                    }
+
+                    .star {
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        color: #FFE604;
+                        position: absolute;
+                        width: 20px;
+                        height: 20px;
+                        left: -45px;
+                        font-size: 25px;
+                    }
+
+                    &:nth-child(odd) .item {
+                        background-color: white;
+                    }
+                }
+            }
+
+            .divider {
+                border: 1px solid #000000;
+                margin: 8px 0px 18px 0;
+                width: 100%;
+            }
+        }
+    }
+}
