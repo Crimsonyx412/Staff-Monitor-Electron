@@ -44,6 +44,16 @@ const { uIOhook } = require('uiohook-napi')
 uIOhook.start()
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'false'
 
+app.commandLine.appendSwitch('enable-webgl')
+app.commandLine.appendSwitch('no-sandbox')
+app.commandLine.appendSwitch('disable-gpu')
+app.commandLine.appendSwitch('disable-software-rasterizer')
+app.commandLine.appendSwitch('disable-gpu-compositing')
+app.commandLine.appendSwitch('disable-gpu-rasterization')
+app.commandLine.appendSwitch('disable-gpu-sandbox')
+app.commandLine.appendSwitch('--no-sandbox')
+app.disableHardwareAcceleration()
+
 // keytar.deletePassword('app', 'userinfo');
 // keytar.deletePassword('app', 'settings');
 function createTrayIcon() {
@@ -187,6 +197,7 @@ function createAppWindow() {
   })
 
   mainWindow.loadURL(startUrl)
+  // mainWindow.webContents.openDevTools()
   mainWindow.on('closed', function () {
     mainWindow = null
   })
@@ -366,6 +377,7 @@ function createWindow() {
 
   loadingWindow.loadURL(loadingUrl)
   loadingWindow.show()
+  // loadingWindow.openDevTools()
   loadingWindow.setOverlayIcon(null, '')
 }
 app.on('ready', () => {
@@ -644,6 +656,8 @@ ipcMain.on('captureScreenshot', async (event, data) => {
     { width: 0, height: 0 }
   )
 
+  const displayIds = displays.map((display) => display.id)
+
   // Get sources for windows and screens, and set the thumbnail size to the maximum width and height determined above.
   desktopCapturer
     .getSources({
@@ -655,6 +669,7 @@ ipcMain.on('captureScreenshot', async (event, data) => {
       // Loop through the retrieved sources.
       for (const source of sources) {
         if (
+          !displayIds.includes(Number(source.display_id)) &&
           source.name !== 'Entire screen' &&
           !source.name.startsWith('Screen ')
         )
@@ -678,7 +693,6 @@ ipcMain.on('captureScreenshot', async (event, data) => {
           ctx.filter = isBlur ? 'blur(6px)' : 'blur(0px)' // apply a 10px blur effect
           ctx.drawImage(image, 0, 0, screenWidth, screenHeight)
           const imageDataURL = canvas.toDataURL('image/jpeg', 0.3)
-
           // Write the converted image data to a file
           fs.writeFileSync(
             outputPath,
@@ -687,7 +701,7 @@ ipcMain.on('captureScreenshot', async (event, data) => {
           )
           fileNames.push(fileName)
         } catch (error) {
-          console.error(error)
+          console.error('Capture screen error:', error)
         }
       }
 
