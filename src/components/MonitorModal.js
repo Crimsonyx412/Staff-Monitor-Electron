@@ -54,8 +54,10 @@ export default function MonitorModal({
     }, [open, isWorking, isBreaking])
 
     useEffect(() => {
-        if (isWorking && !isBreaking)
+        if (isWorking && !isBreaking) {
+            clearTimeout(workingTimer.current)
             monitorWorking()
+        }
         else {
             clearTimeout(workingTimer.current)
         }
@@ -96,7 +98,7 @@ export default function MonitorModal({
             modalTimer.current = setInterval(() => {
                 setCountdown(prev => prev - 1)
             }, 1000)
-        }, 300000)
+            }, 300000)
         // }, 5000) // test
     };
 
@@ -133,7 +135,7 @@ export default function MonitorModal({
     return <>
         <Dialog
             open={open}
-            // onClose={handleClose}
+            onClose={handleClose}
             classes={{ root: "monitor-modal-wrapper" }}
 
         >
@@ -153,7 +155,7 @@ export default function MonitorModal({
         </Dialog>
         <Dialog
             open={breakModal}
-            // onClose={breakModalClose}
+            onClose={breakModalClose}
             classes={{ root: "break-modal-wrapper" }}
         >
             <DialogContent classes={{ root: "mm-content" }}>
